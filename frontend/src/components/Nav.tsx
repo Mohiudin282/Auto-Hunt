@@ -24,7 +24,7 @@ export function Nav() {
                     onClick={() => navigate("/Signup")}
                     className="hover:underline">
         
-                Sign-up
+                Signup
                     </button>
                 </div>
             </div>

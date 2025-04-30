@@ -1,13 +1,8 @@
-import { Modal } from "./Modal";
-
-interface Prop {
-    onClose?: () => void;
-}
-
-export function Login({ onClose }: Prop) {
+export function Login() {
     return (
-        <Modal onClose={onClose}>
-            <div className="bg-white p-8 rounded-lg w-[500px] max-w-[90%] h-max">
+        
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="bg-white p-20 rounded-lg w-[500px] max-w-[100%] h-max">
                 {/* Logo */}
                 <div className="flex justify-center mb-4">
                     <img src="/Logo1.svg" alt="Logo" className="h-10" />
@@ -30,9 +25,9 @@ export function Login({ onClose }: Prop) {
                         <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
                     </div>
 
-                    <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-                        Sign in
-                    </button>
+                    <button className="w-1/3 mt-4 bg-white-600 border text-black min-w-full py-2 rounded-4xl hover:bg-gray-200 transition">
+            Log In
+          </button>
                 </div>
 
                 {/* Footer */}
@@ -40,15 +35,16 @@ export function Login({ onClose }: Prop) {
                     or continue with
                 </p>
                 <div className="flex items-center justify-between">
-                    <button className="w-1/3 mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-                        facebook
-                    </button>
-                    <button className="w-1/3 mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-                        google
-                    </button>
+                <button 
+          
+          className="realtive flex items-center justify-center gap-2 w-1/3 mt-4 bg-white-600 border text-black min-w-full py-2 rounded-4xl hover:bg-gray-200 transition">
+         <img src="/logos/Google.png" alt="Google Logo" className="h-6 w-6 justify-start" />
+         <span>Continue with Google</span>
+        </button>
                 </div>
             </div>
-        </Modal>
+            </div>
+        
 
 
     );

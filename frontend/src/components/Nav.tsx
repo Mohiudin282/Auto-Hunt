@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { Login } from "./modals/Login";
+import { useNavigate } from "react-router-dom";
+
+
 
 export function Nav() {
-    const [showLogin, setShowLogin] = useState(false);
+    const navigate = useNavigate();
     return (
         <>
-            {showLogin && (
-               <Login onClose={() => setShowLogin(false)} />
-            )}
+            
             <div className="bg-gray-500 h-16 flex justify-between items-center px-8">
                 <a href="/" className="flex justify-center items-center gap-x-4">
                     <img className="size-16" src="/Logo1.svg" />
@@ -15,12 +14,17 @@ export function Nav() {
                 </a>
 
                 <div className="space-x-8 font-medium text-white">
-                    <button className="hover:underline"
-                        onClick={() => setShowLogin(true)}>
-                        Login
-                    </button>
-                    <button className="hover:underline">
-                        Sign-up
+                <button 
+                    className="hover:underline"
+                    onClick={() => navigate("/login")}
+                >
+                    Login
+                </button>
+                    <button 
+                    onClick={() => navigate("/Signup")}
+                    className="hover:underline">
+        
+                Signup
                     </button>
                 </div>
             </div>

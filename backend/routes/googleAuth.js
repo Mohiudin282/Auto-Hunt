@@ -8,7 +8,7 @@ router.get('/google', passport.authenticate('google', {
 }));
 
 router.get('/google/callback', passport.authenticate('google', {
-    failureRedirect: '/login',
-    successRedirect: '/dashboard',
+    failureRedirect: 'http://localhost:5173/login',
+    successRedirect: 'http://localhost:5173/dashboard',
 }));
 module.exports = router;

@@ -9,17 +9,23 @@ const dashboardRoute = require('./routes/dashboard');
 const googleAuthRoute = require('./routes/googleAuth');
 const logoutRoute = require('./routes/logout');
 const passport = require('./config/passport');
+const cors = require('cors');
 
-
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
 app.get('/', function(req, res){
     res.send('Hello World!');
 });
 
-const path = require('path'); // Add this at the top
+app.get('/api/test', (req, res) => {
+    res.json({message: "CORS is working"});
+})
+
 
 app.set('view engine', 'ejs');
-//app.set('views', path.join(__dirname, 'views'));
 
 
 app.use(express.json());
@@ -29,24 +35,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'mySuperSecretKey',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 //passport middlewares
 app.use(passport.initialize());
 app.use(passport.session());
 
 //middleware to restrict access to /dashboard wihout authentication.
-function ensureAuthenticated(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-}
+// function ensureAuthenticated(req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect('/login');
+// }
 
 //use routes
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
-app.use('/dashboard', ensureAuthenticated, dashboardRoute);
+app.use('/dashboard', dashboardRoute);
 app.use('/auth', googleAuthRoute);
 app.use('/logout', logoutRoute);
 

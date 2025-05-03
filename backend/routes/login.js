@@ -8,10 +8,8 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-    failureFlash: false
-}));
+router.post('/', passport.authenticate('local'), (req, res) => {
+    res.json({message: "Login Successfull", user: req.user})
+});
 module.exports = router;
 

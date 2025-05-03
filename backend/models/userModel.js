@@ -1,5 +1,5 @@
 const db = require('../config/db');
-const bcrypt = require('bcryptjs')
+
 
 exports.createUser = (userData, callback) => {
     const { user_id, full_name, email, password } = userData;

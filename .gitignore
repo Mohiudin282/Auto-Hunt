@@ -21,6 +21,7 @@ pids/
 
 # ──────── Environment Variables ────────
 .env
+*/.env
 .env.*.local
 *.local
 

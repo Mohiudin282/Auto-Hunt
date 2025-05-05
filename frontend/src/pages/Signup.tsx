@@ -1,10 +1,27 @@
 import { useState } from 'react';
+import {handleSignup} from '../utils/api'
+import {useNavigate} from 'react-router-dom';
+
+
 
 export function Signup() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const navigate = useNavigate();
+
+  const onSubmit = async () => {
+    const res = await handleSignup({fullName, email, password});
+    if(res.success){
+      navigate("/login");
+    }else{
+      alert("signup failed: " + res.message)
+    }
+  }
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
@@ -44,14 +61,18 @@ export function Signup() {
           <input
             type="text"
             placeholder="Enter Full Name"
+            value={fullName}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setFullName(e.target.value)}
           />
 
           <label className="block text-sm font-medium text-gray-700">Email address</label>
           <input
             type="email"
             placeholder="Email"
+            value={email}
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setEmail(e.target.value)}
           />
 
           <label className="block text-sm font-medium text-gray-700 mt-4">Password</label>
@@ -64,7 +85,9 @@ export function Signup() {
             value={password}
             onChange={handlePasswordChange} // Handle password change
           />
-          {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>} {/* Display password error */}
+          
+          {passwordError &&
+            <p className="text-red-500 text-sm">{passwordError}</p>} {/* Display password error */}
 
           <label className="block text-sm font-medium text-gray-700 mt-4">Re-type Password</label>
           <input
@@ -74,29 +97,32 @@ export function Signup() {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange} // Handle confirm password change
           />
-          {confirmPasswordError && <p className="text-red-500 text-sm">{confirmPasswordError}</p>} {/* Display confirm password error */}
+          {confirmPasswordError &&
+            <p className="text-red-500 text-sm">{confirmPasswordError}</p>} {/* Display confirm password error */}
 
           <div className="flex justify-between items-center mt-2">
             <span></span>
             <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
           </div>
 
-          <button className="w-1/3 mt-4 bg-white-600 border text-black min-w-full py-2 rounded-4xl hover:bg-gray-200 transition">
+          <button 
+          onClick={() => onSubmit()}
+          className="w-1/3 mt-4 bg-white-600 border text-black min-w-full py-2 rounded-4xl hover:bg-gray-200 transition">
             Sign Up
           </button>
         </div>
 
         {/* Footer */}
         <p className="text-center text-sm text-gray-600 mt-4">
-          or 
+          or
         </p>
         <div className="flex items-center justify-between">
-        
-          <button 
-          
+
+          <button
+
             className="realtive flex items-center justify-center gap-2 w-1/3 mt-4 bg-white-600 border text-black min-w-full py-2 rounded-4xl hover:bg-gray-200 transition">
-           <img src="/logos/Google.png" alt="Google Logo" className="h-6 w-6 justify-start" />
-           <span>Continue with Google</span>
+            <img src="/logos/Google.png" alt="Google Logo" className="h-6 w-6 justify-start" />
+            <span>Continue with Google</span>
           </button>
         </div>
       </div>

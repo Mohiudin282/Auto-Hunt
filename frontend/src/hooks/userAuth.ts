@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const useAuth = () => {
     const [authenticated, setAuthenticated] = useState<Boolean | null>(null);
+    const [role, setRole] = useState<string | null>(null);
 
     useEffect(() => {
         axios({
@@ -11,11 +12,18 @@ const useAuth = () => {
             url: DASHBOARD_API,
             withCredentials: true,
         })
-        .then((res) => setAuthenticated(res.data.authenticated))
+        .then((res) => {
+            if(res.data.authenticated){
+                setAuthenticated(true);
+                setRole(res.data.user.role);
+            }else{
+                setAuthenticated(false);
+            }
+        })
         .catch(() => setAuthenticated(false));
     }, []);
 
-    return {authenticated};
+    return {authenticated, role};
 
 }
 

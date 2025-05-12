@@ -51,15 +51,16 @@ export const handleLogin = async ({ email, password }: props) => {
             },
             withCredentials: true
         });
-        console.log(res);
+        const role = res.data.user.role;
         return {
-            success: true
-        }
+            success: true,
+            role: role
+        };
     } catch (error) {
         console.error(error);
         return {
             success: false
-        }
+        };
     }
 
-}
+};

@@ -8,6 +8,7 @@ import { Signup } from './pages/Signup';
 import { AdminPanel } from './pages/AdminPanel';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Unauthorized } from './pages/Unauthorized';
+import { NotFound } from './pages/NotFound';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/inspection" element={<InspectionForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export function Dashboard() {
+  const navigate = useNavigate();
     return (
         <>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin="" />
@@ -206,7 +209,8 @@ export function Dashboard() {
                   Get a comprehensive report on the car's condition
                 </p>
               </div>
-              <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1cab80] text-white text-sm font-medium leading-normal">
+              <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#1cab80] text-white text-sm font-medium leading-normal"
+              onClick={() => {navigate("/inspection")}}>
                 <span className="truncate">Book Now</span>
               </button>
             </div>

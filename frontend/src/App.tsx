@@ -9,6 +9,7 @@ import { AdminPanel } from './pages/AdminPanel';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Unauthorized } from './pages/Unauthorized';
 import { NotFound } from './pages/NotFound';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Toaster />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={
@@ -35,7 +37,7 @@ function App() {
             <AdminPanel />
           </ProtectedRoute>
         } />
-        <Route path="/unauthorized" element={<Unauthorized />}/>
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/inspection" element={<InspectionForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

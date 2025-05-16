@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { handleInspection } from "../utils/api";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export function InspectionForm() {
   const [location, setLocation] = useState("");
@@ -9,12 +11,17 @@ export function InspectionForm() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
+  const naviagte = useNavigate();
+
   const onSubmit = async () => {
-    const res = await handleInspection({location, carType, model, address, name, phone})
-    if(res?.success){
-      return(
-        <div className="flex justify-center items-center h-screen">Your inspection will be done</div>
-      );
+    const res = await handleInspection({ location, carType, model, address, name, phone })
+    if (res?.success) {
+      toast.success("Inspection booked sucessfully");
+      setTimeout(() => {
+        naviagte('/dashboard');
+      }, 2000);
+    }else{
+      toast.error("Failed to book inspection. Please try again");
     }
   }
   return (
@@ -72,10 +79,10 @@ export function InspectionForm() {
               placeholder="Enter Your Phone" />
 
             <button className="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-800 transition"
-            onClick={(e) => {
-              e.preventDefault();
-              onSubmit();
-            }}>
+              onClick={(e) => {
+                e.preventDefault();
+                onSubmit();
+              }}>
               Submit
             </button>
           </form>

@@ -11,7 +11,11 @@ export function Login() {
     const onSubmit = async () => {
         const res = await handleLogin({ email, password });
         if (res.success) {
-            navigate("/dashboard");
+            if(res.role === "admin"){
+                navigate("/admin");
+            }else{
+                navigate("/dashboard");
+            }
         } else {
             alert("login failed");
         }

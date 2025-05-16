@@ -9,7 +9,9 @@ const dashboardRoute = require('./routes/dashboard');
 const googleAuthRoute = require('./routes/googleAuth');
 const logoutRoute = require('./routes/logout');
 const passport = require('./config/passport');
+const inspectionRoute = require('./routes/inspectionBooking');
 const cors = require('cors');
+const { inspectionBooking } = require("./models/inspectionModel");
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -55,6 +57,7 @@ app.use('/login', loginRoute);
 app.use('/dashboard', dashboardRoute);
 app.use('/auth', googleAuthRoute);
 app.use('/logout', logoutRoute);
+app.use('/inspection', inspectionRoute);
 
 
 const PORT = process.env.PORT || 3000;

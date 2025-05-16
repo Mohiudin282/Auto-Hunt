@@ -1,28 +1,101 @@
-import { useState, useEffect } from "react";
-export function MainSection(){
-    const Images = [
-        "/images/Car1.jpg",
-        "/images/Car2.jpg",
-        "/images/Car3.jpg",
-    ];
-    const [bgImage, setBgImage] = useState(Images[0])
+import { Search} from '../components/Search';
+export function MainSection() {
+    return (
+        <>
+            <head>
+                <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin="" />
+                <link
+                    rel="stylesheet"
+                    as="style"
+                    onLoad={(e) => {
+                        e.currentTarget.rel = "stylesheet";
+                    }}
+                    href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800"
+                />
+                <title>FeelsOnWheels</title>
+                <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+                <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+            </head>
 
-    useEffect(()=>{
-        const randomIndex = Math.floor(Math.random() * Images.length);
-        setBgImage(Images[randomIndex]);
-    }, []);
+            <div
+                className="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden"
+                style={{ fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif' }}
+            >
+                <div className="layout-container flex h-full grow flex-col">
+                    <div className="px-40 flex flex-1 justify-center py-5">
+                        <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
+                            <div className="@container">
+                                <div className="@[480px]:p-4">
+                                    <div
+                                        className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4"
+                                        style={{
+                                            backgroundImage:
+                                                'linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("https://cdn.usegalileo.ai/sdxl10/73b25356-6519-4f41-b432-54a2644acdf0.png")',
+                                        }}
+                                    >
+                                        <div className="flex flex-col gap-2 text-center">
+                                            <h1 className="text-white font-black leading-tight tracking-[-0.033em] @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
+                                                Pakistan First Car  Aggregation Listings Platform
+                                            </h1>
+                                            <h2 className="text-white font-normal leading-normal @[480px]:text-xl @[480px]:font-normal @[480px]:leading-normal">
+                                                We provide Listings from Various Platforms
+                                            </h2>
+                                            <div className="flex justify-center items-center gap-2">
+                                                <div className="w-20 h-20">  <img src="/images/pakwheels.png" alt="Car 1"  /></div>
+                                                <div className=" w-24 h-18"><img src="/images/olx.png" alt="Car 1"  /></div>
+                                                <div className="w-26 h-26"><img src="/images/wise.png" alt="Car 1"  /></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    return(
-        <div className="h-[400px] items-center justify-center flex relative text-white bg-cover bg-center flex-col"
-        style={{
-            backgroundImage: `url(${bgImage})`,
-        }}>
-           <p className="font-medium text-3xl">Car listings from major sites like</p>
-           <div className="flex justify-center align-center gap-x-3">
-            <img src="/logos/KIA2.svg" alt="kia.jpg"/>
-            <img src="/logos/KIA1.png" alt="kia.png"/>
-           </div>
-           <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black to-transparent"></div>
-        </div>
+                            <div className="flex flex-wrap justify-between gap-3 p-4">
+                                <p className="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Search Cars</p>
+                            </div>
+
+                            <div className="flex max-w-[1080px] flex-wrap items-end gap-4 px-4 py-3">
+                            <Search />
+                            </div>
+                    
+                            <div className="flex flex-col  gap-4 px-4 py-3">
+                               <h2 className="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest News</h2>
+                                 <div className="flex flex-wrap left gap-3 p-4">
+                                    {[
+                                        {
+                                            img: "https://cdn.usegalileo.ai/sdxl10/0c8c7ff3-09db-40b9-b92e-f036a3b5e5d9.png",
+                                            title: "Car Rental Tips",
+                                            subtitle: "Learn how to save on rentals.",
+                                        },
+                                        {
+                                            img: "https://cdn.usegalileo.ai/sdxl10/97fdafc5-2eac-4f21-9124-5013a0b3a525.png",
+                                            title: "Top 5 Cars for Family Trips",
+                                            subtitle: "Explore the best family cars.",
+                                        },
+                                        {
+                                            img: "https://cdn.usegalileo.ai/sdxl10/70305469-5272-47a5-aef5-5199ad322cde.png",
+                                            title: "Benefits of Electric Cars",
+                                            subtitle: "Discover why EVs are the future.",
+                                        },
+                                    ].map(({ img, title, subtitle }, i) => (
+                                        <div key={i} className="flex flex-col gap-3 pb-3">
+                                            <div
+                                                className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
+                                                style={{ backgroundImage: `url("${img}")` }}
+                                            />
+                                            <div>
+                                                <p className="text-[#141414] text-base font-medium leading-normal">{title}</p>
+                                                <p className="text-neutral-500 text-sm font-normal leading-normal">{subtitle}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
     );
 }

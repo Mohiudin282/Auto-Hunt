@@ -24,7 +24,6 @@ export function LandingPage() {
     <>
       <Nav />
       <MainSection />
-      <CarsNearYou />
 
       <About />
     </>

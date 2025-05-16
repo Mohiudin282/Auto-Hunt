@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -98,3 +99,12 @@ export function AdminPanel() {
         </div>
     );
 }
+=======
+ import { useState } from "react";
+
+export function AdminPanel() {
+  return (
+    <h1>This is Admin Panel</h1>
+  )
+}
+>>>>>>> Latest_changes

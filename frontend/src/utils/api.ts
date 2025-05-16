@@ -90,6 +90,7 @@ export const handleInspection = async ({location, carType, model, address, name,
             },
             withCredentials: true
         });
+        console.log(carType);
         if(res.status === 200){
             console.log("Data Submitted");
             return {

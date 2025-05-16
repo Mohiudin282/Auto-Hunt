@@ -50,7 +50,7 @@ export function InspectionForm() {
               onChange={(e) => setCarType(e.target.value)}>
               <option value="" disabled>Select Car Type</option>
               <option value="suv">SUV</option>
-              <option value="cuv">Crossover</option>
+              <option value="crossover">Crossover</option>
               <option value="sedan">Sedan</option>
               <option value="hatchback">Hatchback</option>
             </select>

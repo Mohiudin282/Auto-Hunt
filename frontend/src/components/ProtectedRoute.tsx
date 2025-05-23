@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import useAuth from "../hooks/userAuth"
 import { JSX } from "react";
 import { NotFound } from "../pages/NotFound";
+import Spinner from "./Spinner";
 
 type Prop = {
     children: JSX.Element;
@@ -11,7 +12,7 @@ type Prop = {
 const ProtectedRoute = ({children, allowedRoles}: Prop) =>{
     const {authenticated, role} = useAuth();
     if(authenticated === null){
-        return <div className="flex justify-center items-center h-screen">Loading...</div>
+        return <Spinner/>
     }
     if(authenticated === false){
         return <Navigate to={"/login"} />

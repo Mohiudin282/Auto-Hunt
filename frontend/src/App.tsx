@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Unauthorized } from './pages/Unauthorized';
 import { NotFound } from './pages/NotFound';
 import { Toaster } from 'react-hot-toast';
+import { Results } from './pages/Results';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/inspection" element={<InspectionForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/results" element={<Results />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

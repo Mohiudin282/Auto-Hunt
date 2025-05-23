@@ -10,6 +10,7 @@ const googleAuthRoute = require('./routes/googleAuth');
 const logoutRoute = require('./routes/logout');
 const passport = require('./config/passport');
 const inspectionRoute = require('./routes/inspectionBooking');
+const newsletterRoute = require('./routes/newsletter')
 const cors = require('cors');
 const { inspectionBooking } = require("./models/inspectionModel");
 
@@ -43,13 +44,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//middleware to restrict access to /dashboard wihout authentication.
-// function ensureAuthenticated(req, res, next){
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect('/login');
-// }
 
 //use routes
 app.use('/register', registerRoute);
@@ -58,6 +52,7 @@ app.use('/dashboard', dashboardRoute);
 app.use('/auth', googleAuthRoute);
 app.use('/logout', logoutRoute);
 app.use('/inspection', inspectionRoute);
+app.use('/newsletter', newsletterRoute);
 
 
 const PORT = process.env.PORT || 3000;

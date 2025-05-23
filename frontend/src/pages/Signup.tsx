@@ -49,7 +49,7 @@ export function Signup() {
       <div className="bg-white p-20 rounded-lg w-[500px] max-w-[100%] h-max">
         {/* Logo */}
         <div className="flex justify-center mb-4">
-          <img src="/Logo1.svg" alt="Logo" className="h-10" />
+          <img src="/logo.svg" alt="Logo" className="h-10" />
         </div>
 
         {/* Title */}

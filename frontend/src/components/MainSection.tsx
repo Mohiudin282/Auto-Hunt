@@ -1,7 +1,8 @@
 import { Search} from '../components/Search';
+import DisplayNl from './DisplayNl';
 export function MainSection() {
     return (
-        <>
+        <main className='mt-16 px-10'>
             <head>
                 <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin="" />
                 <link
@@ -57,45 +58,12 @@ export function MainSection() {
                             <div className="flex max-w-[1080px] flex-wrap items-end gap-4 px-4 py-3">
                             <Search />
                             </div>
-                    
-                            <div className="flex flex-col  gap-4 px-4 py-3">
-                               <h2 className="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest News</h2>
-                                 <div className="flex flex-wrap left gap-3 p-4">
-                                    {[
-                                        {
-                                            img: "https://cdn.usegalileo.ai/sdxl10/0c8c7ff3-09db-40b9-b92e-f036a3b5e5d9.png",
-                                            title: "Car Rental Tips",
-                                            subtitle: "Learn how to save on rentals.",
-                                        },
-                                        {
-                                            img: "https://cdn.usegalileo.ai/sdxl10/97fdafc5-2eac-4f21-9124-5013a0b3a525.png",
-                                            title: "Top 5 Cars for Family Trips",
-                                            subtitle: "Explore the best family cars.",
-                                        },
-                                        {
-                                            img: "https://cdn.usegalileo.ai/sdxl10/70305469-5272-47a5-aef5-5199ad322cde.png",
-                                            title: "Benefits of Electric Cars",
-                                            subtitle: "Discover why EVs are the future.",
-                                        },
-                                    ].map(({ img, title, subtitle }, i) => (
-                                        <div key={i} className="flex flex-col gap-3 pb-3">
-                                            <div
-                                                className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl"
-                                                style={{ backgroundImage: `url("${img}")` }}
-                                            />
-                                            <div>
-                                                <p className="text-[#141414] text-base font-medium leading-normal">{title}</p>
-                                                <p className="text-neutral-500 text-sm font-normal leading-normal">{subtitle}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
+                            <DisplayNl/>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+
+        </main>
     );
 }

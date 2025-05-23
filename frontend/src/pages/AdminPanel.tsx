@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Newsletter } from "./Newsletter";
 
 type Booking = {
     booking_id: number;
@@ -47,7 +48,7 @@ export function AdminPanel() {
     }
 
     return (
-        <div className="p-4">
+        <div className="px-4">
             <h1 className="text-xl font-bold mb-4">Inspection Bookings</h1>
             <table className="w-full border-collapse border border-gray-300">
                 <thead>
@@ -95,6 +96,8 @@ export function AdminPanel() {
 
                 </tbody>
             </table>
+
+            <Newsletter/>
         </div>
     );
 }

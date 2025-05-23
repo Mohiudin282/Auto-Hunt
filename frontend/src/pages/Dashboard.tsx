@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Search } from '../components/Search';
+import { Nav } from '../components/Nav';
+import { handleLogout } from '../utils/api';
+import DisplayNl from '../components/DisplayNL';
 
 export function Dashboard() {
   const navigate = useNavigate();
-  const makeModelMap: { [key: string]: string[] } = {
-    Honda: ['Civic', 'City', 'Accord'],
-    Toyota: ['Corolla', 'Yaris', 'Fortuner'],
-    Suzuki: ['Alto', 'Cultus', 'Wagon R'],
-    Hyundai: ['Elantra', 'Tucson', 'Sonata'],
-  };
-
-  const [selectedMake, setSelectedMake] = useState('');
-  const [models, setModels] = useState<string[]>([]);
-
-  const handleMakeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const make = e.target.value;
-    setSelectedMake(make);
-    setModels(makeModelMap[make] || []);
-  };
+  //const [showModal, setShowModal] = useState(false);
 
 
   return (
-    <>
+    <main className='mt-16 px-10'>
+      {/* {showModal && <MyModal onClose={() => setShowModal(false)} />} */}
       <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin="" />
       <link
         rel="preload"
@@ -39,78 +30,11 @@ export function Dashboard() {
         className="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden"
         style={{ fontFamily: '"Work Sans", "Noto Sans", sans-serif' }}>
         <div className="layout-container flex h-full grow flex-col">
-
-          <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#F4F4F4] px-10 py-3">
-            {/*Left Div*/}
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap- text-[#141414]">
-                <div className="size-4">
-
-                </div>
-                <h2 className="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">
-                  Feelsonwheels
-                </h2>
-              </div>
-              <div className="flex items-center gap-9">
-                <a
-                  className="text-[#141414] text-sm font-medium leading-normal"
-                  href="#"
-                >
-                  Car Listings
-                </a>
-
-                <a
-                  className="text-[#141414] text-sm font-medium leading-normal"
-                  href="#"
-                >
-                  Inspections
-                </a>
-
-              </div>
-            </div>
-            {/*Right Div*/}
-            <div className="flex flex-1 justify-end gap-8">
-              <div className="flex gap-2">
-                {/*Faq button*/} <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#F4F4F4] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-                  <div
-                    className="text-[#141414]"
-                    data-icon="Question"
-                    data-size="20px"
-                    data-weight="regular"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20px"
-                      height="20px"
-                      fill="currentColor"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z" />
-                    </svg>
-                  </div>
-                </button>
-                {/*Manage Button*/}
-                <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#F4F4F4] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-                  <div
-                    className="text-[#141414]"
-                    data-icon="User"
-                    data-size="20px"
-                    data-weight="regular"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20px"
-                      height="20px"
-                      fill="currentColor"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z" />
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </header>
+          <Nav
+            navLinks={[{ label: "Booked Inpections", path: "" }]} //onNavClick={() => setShowModal(true)} {/* triggers modal */}
+            buttons={{ label: "Logout", path: "" }}
+            onButtonClick={() => handleLogout(navigate)}
+          />
           <div className="px-40 flex flex-1 justify-center py-5">
             <div className="flex flex-col max-w-[960px] flex-1">
               <div className="@container">
@@ -129,49 +53,7 @@ export function Dashboard() {
                       Find your next car with Feelsonwheels
                     </h2>
                     {/*Search BAr*/}
-                    <div className="flex flex-wrap gap-2 items-end">
-                      <div className="flex flex-col">
-                        <label className="text-xs text-gray-300 ml-1 mb-1">Make</label>
-                        <select
-                          className="p-2 rounded-xl text-sm text-green-800 bg-white h-10 w-37"
-                          value={selectedMake}
-                          onChange={handleMakeChange}
-                        >
-                          <option value="">Any Make</option>
-                          {Object.keys(makeModelMap).map((make) => (
-                            <option key={make} value={make}>
-                              {make}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="flex flex-col">
-                        <label className="text-xs text-gray-300 ml-1 mb-1">Model</label>
-                        <select className="p-2 rounded-xl text-sm text-green-800 bg-white h-10 w-37">
-                          <option value="">Model Name</option>
-                          {models.map((model) => (
-                            <option key={model} value={model}>
-                              {model}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="text-xs text-gray-300 ml-1 mb-1">Model Year</label>
-                        <select className="p-2 rounded-xl text-sm text-green-800 bg-white h-10 w-37">
-                          <option>Model Year</option>
-                        </select>
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="text-xs text-gray-300 ml-1 mb-1">City</label>
-                        <select className="p-2 rounded-xl text-sm text-green-800 bg-white h-10 w-37">
-                          <option>City</option>
-                        </select>
-
-                      </div>
-                      <button className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded-4xl p-2 w-49 h-10 ">Find Cars For me</button>
-                    </div>
+                    <Search />
 
                   </div>
                 </div>
@@ -186,9 +68,9 @@ export function Dashboard() {
                       Get a comprehensive report on the car's condition
                     </p>
                   </div>
-                  <button 
-                  onClick={() => navigate("/inspection")}
-                  className="flex w-30 h-10 cursor-pointer items-center justify-center  rounded-xl px-4 bg-green-600 text-white text-sm ">
+                  <button
+                    onClick={() => navigate("/inspection")}
+                    className="flex w-30 h-10 cursor-pointer items-center justify-center  rounded-xl px-4 bg-green-600 text-white text-sm ">
                     <span>Book Now</span>
                   </button>
                 </div>
@@ -201,7 +83,7 @@ export function Dashboard() {
 
         </div>
       </div>
-
-    </>
-  )
+      <DisplayNl/>
+    </main>
+  );
 }

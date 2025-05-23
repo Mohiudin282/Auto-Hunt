@@ -16,7 +16,6 @@ type Booking = {
     carType: string
 }
 
-
 export const handleSignup = async ({ fullName, email, password }: props) => {
     const full_name = fullName;
     try {
@@ -111,3 +110,20 @@ export const handleInspection = async ({location, carType, model, address, name,
         }
     }
 };
+
+export const handleLogout = async(navigate: any) => {
+    
+    try {
+        const res = await axios.get('http://localhost:3000/logout', {
+            withCredentials: true
+        });
+        console.log(res);
+        if(res.status === 200){
+            navigate("/")
+        }else{
+            console.error("Logout failed");
+        }
+    } catch (error) {
+        console.error("Logout error:", error);
+    }
+}
